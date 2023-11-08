@@ -58,7 +58,7 @@ split <- train_test_split(data, test_size=0.2, seed=42)
 test_index <- split[[1]]
 train_index <- split[[2]]
 
-base_path <- "./fof/data/r/hyperparameter_tunning/"
+base_path <- "./fof/data/r/hyperparameter_tuning/"
 
 for (hyperparameters in hyperparameters_config){
   print("ITERATION")
