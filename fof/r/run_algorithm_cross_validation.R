@@ -45,7 +45,8 @@ CV_regressor <- function(base_path, data, v0, Kp, Kt, A, B) {
 }
 
 hyperparameters_config <- list(
-  list(v0 = 0.1, Kp = 3, Kt = 7, A = 0.1, B = 0.1)
+  list(v0 = 0.1, Kp = 3, Kt = 7, A = 0.1, B = 0.1),
+  list(v0 = 0.1, Kp = 2, Kt = 7, A = 0.1, B = 0.1)
 )
 
 data <- read.csv("./fof/data/r/prepared_data.csv")
