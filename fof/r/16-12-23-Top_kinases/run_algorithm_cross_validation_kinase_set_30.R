@@ -70,7 +70,7 @@ hyperparameters_config <- list(
 
 data <- read.csv("./fof/data/r/prepared_data.csv")
 
-base_path <- "./fof/data/r/hyperparameter_tuning_cross_validation_kinase_set/"
+base_path <- "./fof/data/r/hyperparameter_tuning_cross_validation_kinase_set_30/"
 
 for (hyperparameters in hyperparameters_config){
   print("ITERATION")
