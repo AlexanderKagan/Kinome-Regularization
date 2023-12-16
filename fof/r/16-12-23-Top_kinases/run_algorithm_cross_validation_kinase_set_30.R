@@ -43,6 +43,9 @@ CV_regressor <- function(base_path, data, kinase_list, v0, Kp, Kt, A, B) {
 
     y_test_predicted_final[test_index] <- y_test_predicted
     y_test_true_standartized_final[test_index] <- y_test_true_standartized
+
+    model_gamma_path = paste(base_path, "model_", drug,"_gamma.csv", sep = "")
+    write.csv(model$gamma.pm, model_gamma_path, row.names=FALSE)
   }
 
   y_test_predicted_final_path <- paste(base_path, "y_test_predicted_final.csv", sep = "")
@@ -51,16 +54,18 @@ CV_regressor <- function(base_path, data, kinase_list, v0, Kp, Kt, A, B) {
   y_test_true_standartized_final_path <- paste(base_path, "y_test_true_standartized_final.csv", sep = "")
   write.csv(y_test_true_standartized_final, y_test_true_standartized_final_path, row.names=FALSE)
 
-  last_model_gamma_path = paste(base_path, "last_model_gamma.csv", sep = "")
-  write.csv(model$gamma.pm, last_model_gamma_path, row.names=FALSE)
-
   return (list(y_test_predicted_final, y_test_true_standartized_final, fit_vbvs))
 }
 
 hyperparameters_config <- list(
-  # list(v0 = 0.5, Kp = 1, Kt = 5, A = 0.5, B = 0.5),
-  list(v0 = 0.1, Kp = 1, Kt = 4, A = 0.5, B = 0.5)
-  # list(v0 = 10, Kp = 4, Kt = 7, A = 1, B = 6)
+  list(v0 = 0.1, Kp = 2, Kt = 7, A = 0.5, B = 0.5),
+  list(v0 = 0.1, Kp = 2, Kt = 7, A = 0.1, B = 0.1),
+  list(v0 = 0.1, Kp = 3, Kt = 7, A = 0.5, B = 0.5),
+  list(v0 = 0.1, Kp = 3, Kt = 7, A = 0.1, B = 0.1),
+  list(v0 = 0.01, Kp = 2, Kt = 7, A = 1, B = 1),
+  list(v0 = 0.01, Kp = 2, Kt = 7, A = 0.5, B = 0.5),
+  list(v0 = 0.01, Kp = 3, Kt = 7, A = 1, B = 1),
+  list(v0 = 0.01, Kp = 3, Kt = 7, A = 0.5, B = 0.5)
 )
 
 data <- read.csv("./fof/data/r/prepared_data.csv")
