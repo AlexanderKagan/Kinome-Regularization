@@ -23,9 +23,9 @@ class GroupLasso:
 
         group_2_num_elems = Counter(self.group_index)
 
-        group_coef = list(map(lambda g: np.sqrt(group_2_num_elems[g]), self.group_index))
-        regularizer = self.lambda1 * (self.alpha * cp.norm(w, 1) +
-                                      (1 - self.alpha) * cp.scalar_product(group_coef, cp.square(w)))
+        group_coef = np.array(list(map(lambda g: group_2_num_elems[g], self.group_index)))
+        group_pen = np.sqrt(np.bincount(self.group_index, weights=group_coef * w ** 2))
+        regularizer = self.lambda1 * (self.alpha * cp.norm(w, 1) + (1 - self.alpha) * group_pen)
 
         sum_squares = cp.sum_squares(b + w @ X_array.T - y_array)
         objective = cp.Minimize(sum_squares / (2 * len(y_array)) + regularizer)
